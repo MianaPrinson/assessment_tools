@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admin Dashboard</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="static/dash.css">
+    </head>
+    <body>
+        <h1>STUDENT RESULTS</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Visual</th>
+                <th>Auditory</th>
+                <th>Read_Write</th>
+                <th>Kinesthetic</th>
+                <th>Dominant Style</th>
+            </tr>
+            {% for student in students%}
+            <tr>
+                <td>{{ student[0] }}</td>
+                <td>{{ student[1] }}</td>
+                <td>{{ student[2] }}</td>
+                <td>{{ student[3] }}</td>
+                <td>{{ student[4] }}</td>
+                <td>{{ student[5] }}</td>
+                <td>{{ student[6] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

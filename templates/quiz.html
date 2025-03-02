@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/page.css">
+</head>
+<body>
+    <h1>Questions</h1>
+    <p id="instr">
+        For each of the following statements, please place a number next to every phrase. Use the following system to indicate your preferences: <br>
+        
+        4 = Closest to describing you <br>
+        3 = Next best description <br>
+        2 = Next best <br>
+        1 = Least descriptive of you</p>
+    <form action="/quiz" method="POST">
+        {% for question_data in questions %}
+            {% set question_index = loop.index %} 
+            <div class="qns">
+                <p >{{ question_index }}) {{ question_data["question"] }}</p>
+            </div>
+            <div class="options">
+                {% for category, option in question_data["options"].items() %}
+                    <p>
+                        {{ option }}
+                        <select name="q{{ question_index }}_{{ category }}">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <br>
+        <div class="button-container">
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+    </form>
+</body>
+</html>

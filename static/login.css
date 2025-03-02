@@ -1,0 +1,30 @@
+body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;   
+    display: flex;
+}
+ body.login-page { background-color: blanchedalmond !important; }
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font: size 2em;
+}
+div{
+    padding: 10px 20px;
+    border: none;
+}
+.form-label{
+    display: block;
+
+}
+.form-input{
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+a {
+    color: #0a417c;
+    text-decoration: none;
+}
