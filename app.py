@@ -121,7 +121,7 @@ def calculate_vark_scores(user_answers):
     return vark_scores
 
 def determine_dominant_style(vark_scores):
-    dominant_style = max(vark_scores, key=vark_scores.get())
+    dominant_style = max(vark_scores, key=vark_scores.get)
     return dominant_style
 
 def create_database():
@@ -135,7 +135,7 @@ def create_database():
                 auditory INTEGER DEFAULT 0,
                 read_write INTEGER DEFAULT 0,
                 kinesthetic INTEGER DEFAULT 0,
-                Dominant Style TEXT
+                dominant_style TEXT
             )
         """)
         conn.commit()
@@ -144,15 +144,15 @@ def store_results(user_name, email, vark_scores,dominant_style):
     with sqlite3.connect("database.db") as conn:
         cursor = conn.cursor()
         cursor.execute("""
-            INSERT INTO STUDENTS (user_name, email, visual, auditory, read_write, kinesthetic)
+            INSERT INTO STUDENTS (user_name, email, visual, auditory, read_write, kinesthetic,dominant_style)
             VALUES (?, ?, ?, ?, ?, ?,?)
             ON CONFLICT(email) DO UPDATE SET 
                 user_name=excluded.user_name, 
                 visual=excluded.visual, 
                 auditory=excluded.auditory, 
                 read_write=excluded.read_write, 
-                kinesthetic=excluded.kinesthetic
-                dominant style=
+                kinesthetic=excluded.kinesthetic,
+                dominant_style=excluded.dominant_style
         """, (user_name, email, vark_scores["Visual"], vark_scores["Auditory"], vark_scores["Read/Write"], vark_scores["Kinesthetic"],dominant_style))
         conn.commit()
 
