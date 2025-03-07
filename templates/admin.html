@@ -17,17 +17,18 @@
                 <th>Kinesthetic</th>
                 <th>Dominant Style</th>
             </tr>
-            {% for student in students%}
-            <tr>
-                <td>{{ student[0] }}</td>
-                <td>{{ student[1] }}</td>
-                <td>{{ student[2] }}</td>
-                <td>{{ student[3] }}</td>
-                <td>{{ student[4] }}</td>
-                <td>{{ student[5] }}</td>
-                <td>{{ student[6] }}</td>
-            </tr>
-            {% endfor %}
+        {% for student in students %}
+        <tr>
+            <td>{{user_name }}</td>
+            <td>{{ student["email"] }}</td>
+            <td>{{ student["visual"] }}</td>
+            <td>{{ student["auditory"] }}</td>
+            <td>{{ student["auditory_digital"] }}</td>
+            <td>{{ student["kinesthetic"] }}</td>
+            <td>{{ student["dominant_style"] }}</td>
+        </tr>
+        {% endfor %}
+
         </table>
     </body>
 </html>
