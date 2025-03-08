@@ -24,6 +24,9 @@ div{
     padding: 10px;
     border: 1px solid #ddd;
 }
+.btn{
+    text align:center;
+    margin-top:20px;
 a {
     color: #0a417c;
     text-decoration: none;
