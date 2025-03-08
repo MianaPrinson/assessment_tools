@@ -30,7 +30,9 @@ h1{
   }
 .logout-button{
       justify-content: center;
-    align-items: center;
+      align-items: center;
+      flex-direction: column;   
+      display: flex;
 }
 
 
