@@ -79,6 +79,7 @@ def login():
 def quiz():
     user_name = session.get('user_name')
     email = session.get("email")
+    password=session.get("password")
 
     if request.method == "POST":
         user_answers = {}
@@ -91,7 +92,7 @@ def quiz():
         vark_scores = calculate_vark_scores(user_answers)
         dominant_style = max(vark_scores, key=vark_scores.get)
 
-        store_results(user_name, email, vark_scores,dominant_style)
+        store_results(user_name, email, vark_scores,dominant_style,password)
         return render_template("result.html", dominant_style=dominant_style, vark_scores=vark_scores)
 
     return render_template("quiz.html", questions=questions)
@@ -135,25 +136,48 @@ def determine_dominant_style(vark_scores):
     dominant_style = max(vark_scores, key=vark_scores.get)
     return dominant_style
 
-def store_results(user_name, email, vark_scores, dominant_style):
+def store_results(user_name, email, vark_scores, dominant_style, password):
     try:
-        collection.update_one(
-            {"email": email},
-            {
-                "$set": {
-                    "user_name": user_name,
-                    "visual": vark_scores["Visual"],
-                    "auditory": vark_scores["Auditory"],
-                    "auditory_digital": vark_scores["Auditory-Digital"],
-                    "kinesthetic": vark_scores["Kinesthetic"],
-                    "dominant_style": dominant_style
-                },
-                "$setOnInsert": {"created_at": datetime.datetime.now()}
-            },
-            upsert=True
-        )
+        # Fetch the existing user document
+        user = collection.find_one({"email": email})
+        
+        if user:
+            # Check if password matches
+            if "password" in user and user["password"] == password:
+                # Allow update
+                collection.update_one(
+                    {"email": email},
+                    {
+                        "$set": {
+                            "user_name": user_name,
+                            "visual": vark_scores["Visual"],
+                            "auditory": vark_scores["Auditory"],
+                            "auditory_digital": vark_scores["Auditory-Digital"],
+                            "kinesthetic": vark_scores["Kinesthetic"],
+                            "dominant_style": dominant_style
+                        }
+                    }
+                )
+                return "Results updated successfully!"
+            else:
+                return "Incorrect password. Update denied."
+        else:
+            # Create a new user with password
+            collection.insert_one({
+                "user_name": user_name,
+                "email": email,
+                "visual": vark_scores["Visual"],
+                "auditory": vark_scores["Auditory"],
+                "auditory_digital": vark_scores["Auditory-Digital"],
+                "kinesthetic": vark_scores["Kinesthetic"],
+                "dominant_style": dominant_style,
+                "password": password,  # Store password for future updates
+                "created_at": datetime.datetime.now()
+            })
+            return "New user created and results stored!"
+
     except Exception as e:
-        print(f"Error storing results: {e}")  # Consider using proper logging
+        return f"Error storing results: {e}"
 
 if __name__ == "__main__":
     app.run(debug=True)
