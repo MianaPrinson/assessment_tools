@@ -12,5 +12,9 @@
         <p>Test successfuly submited </p>
         <p><strong>Dominant Style:</strong> {{dominant_style}}</p>
     </div>
+    <form action="{{ url_for('logout') }}" method="get">
+    <button type="submit">Logout</button>
+    </form>
+
 </body>
 </html>
