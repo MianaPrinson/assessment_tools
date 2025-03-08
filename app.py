@@ -11,8 +11,8 @@ ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 
 # MongoDB Connection
-MONGO_URI = os.environ.get("MONGO_URI")
-client = MongoClient(MONGO_URI)
+MONGO_URI = os.getenv("MONGO_URI")
+client = MongoClient(MONGO_URI, tls=True, tlsAllowInvalidCertificates=True)
 db = client["students_data"] 
 collection = db["students"] 
 
