@@ -22,10 +22,18 @@ th,td{
     padding: 8px;
     
 }
-.logout-button{
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;   
-      display: flex;
+.logout-container {
+    text-align: center; 
+    margin-bottom: 20px; 
 }
-    
+
+.logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
