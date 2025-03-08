@@ -24,6 +24,8 @@ th,td{
 }
 .logout-button{
       justify-content: center;
-    align-items: center;
+      align-items: center;
+      flex-direction: column;   
+      display: flex;
 }
     
