@@ -23,7 +23,7 @@ questions = [
     {
         "question": "I make important decisions based on:",
         "options": {
-            "Kinesthetic": "the right gut level feelings.",
+            "Kinaesthetic": "the right gut level feelings.",
             "Auditory": "which way sounds the best and resonates for you",
             "Visual": "what looks best to me after clearly seeing the issues",
             "Auditory-Digital": "precise review and study of the issues"
@@ -32,7 +32,7 @@ questions = [
     {
         "question": "During an argument, I am most likely to be influenced by:",
         "options": {
-            "Kinesthetic": "whether or not I am in touch with the other person's feelings",
+            "Kinaesthetic": "whether or not I am in touch with the other person's feelings",
             "Auditory": "the loudness or softness of the other person's tone of voice",
             "Visual": "whether or not I can see the other person's point of view",
             "Auditory-Digital": "the logic of the other person's argument"
@@ -41,7 +41,7 @@ questions = [
     {
         "question": "I mostly like to be aware of the following in conversation:",
         "options": {
-            "Kinesthetic": "the beautiful feelings they and I share",
+            "Kinaesthetic": "the beautiful feelings they and I share",
             "Auditory": "the sounds and intonations that come from the lovely tone of voice",
             "Visual": "the way people hold themselves and interesting facial expressions",
             "Auditory-Digital": "the words I and they choose and whether it all makes good sense"
@@ -50,7 +50,7 @@ questions = [
     {
         "question": "If I had the choice of these in order, first I would like to:",
         "options": {
-            "Kinesthetic": "select the most comfortable furniture",
+            "Kinaesthetic": "select the most comfortable furniture",
             "Auditory": "find the ideal volume and tuning on a stereo system",
             "Visual": "look around and take in the décor, pictures and how the room looks before do anything else.",
             "Auditory-Digital": "select the most intellectually relevant point in an interesting subject"
@@ -59,7 +59,7 @@ questions = [
     {
         "question": "Which describes your room that you live in:",
         "options": {
-            "Kinesthetic": "The feel of the place is the most important to you",
+            "Kinaesthetic": "The feel of the place is the most important to you",
             "Auditory": "The hi-fi is very prominent and you have an excellent collection",
             "Visual": "The colours you choose and the way a room looks are most important",
             "Auditory-Digital": "It's a practical layout and things are situated in an excellent location"
@@ -125,7 +125,7 @@ def logout():
 
 
 def calculate_vark_scores(user_answers):
-    vark_scores = {"Visual": 0, "Auditory": 0, "Auditory-Digital": 0, "Kinesthetic": 0}
+    vark_scores = {"Visual": 0, "Auditory": 0, "Auditory-Digital": 0, "Kinaesthetic": 0}
     for question_num, rankings in user_answers.items():
         for category, rank in rankings.items():
             vark_scores[category] += int(rank)
@@ -145,7 +145,7 @@ def store_results(user_name, email, vark_scores, dominant_style):
                     "visual": vark_scores["Visual"],
                     "auditory": vark_scores["Auditory"],
                     "auditory_digital": vark_scores["Auditory-Digital"],
-                    "kinesthetic": vark_scores["Kinesthetic"],
+                    "kinaesthetic": vark_scores["Kinaesthetic"],
                     "dominant_style": dominant_style
                 },
                 "$setOnInsert": {"created_at": datetime.datetime.now()}
