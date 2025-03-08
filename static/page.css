@@ -28,5 +28,9 @@ h1{
 .button-container{
     text-align: center;
   }
+.logout-button{
+      justify-content: center;
+    align-items: center;
+}
 
 
