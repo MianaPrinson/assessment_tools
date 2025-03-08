@@ -135,7 +135,7 @@ def determine_dominant_style(vark_scores):
     dominant_style = max(vark_scores, key=vark_scores.get)
     return dominant_style
 
-def store_results(user_name, email, vark_scores, dominant_style, collection):
+def store_results(user_name, email, vark_scores, dominant_style):
     try:
         collection.update_one(
             {"email": email},
@@ -144,7 +144,7 @@ def store_results(user_name, email, vark_scores, dominant_style, collection):
                     "user_name": user_name,
                     "visual": vark_scores["Visual"],
                     "auditory": vark_scores["Auditory"],
-                    "auditory_digital": vark_scores["Auditory-Digital"],
+                    "auditory-digital": vark_scores["Auditory-Digital"],
                     "kinesthetic": vark_scores["Kinesthetic"],
                     "dominant_style": dominant_style
                 },
