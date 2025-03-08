@@ -144,7 +144,7 @@ def store_results(user_name, email, vark_scores, dominant_style):
                     "user_name": user_name,
                     "visual": vark_scores["Visual"],
                     "auditory": vark_scores["Auditory"],
-                    "auditory-digital": vark_scores["Auditory-Digital"],
+                    "auditory_digital": vark_scores["Auditory-Digital"],
                     "kinesthetic": vark_scores["Kinesthetic"],
                     "dominant_style": dominant_style
                 },
