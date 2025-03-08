@@ -17,7 +17,7 @@ db = client["students_data"]
 collection = db["students"] 
 
 app = Flask(__name__)
-app.secret_key = 'erfgnjk-nvcfg' 
+app.secret_key = 'erfgnjknvcfg' 
 
 questions = [
     {
